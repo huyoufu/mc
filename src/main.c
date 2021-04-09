@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <stdio.h>
 #include <time.h>
+
 //在windows平台上 每隔100ns就会计时器加1 而一秒等于10的9此方法 所有 直接除于10的7次方就可以获得秒值
 #define WINDOWS_TICK 10000000  //10的7次方
 #define SEC_TO_UNIX_EPOCH 11644473600LL //1601与1970的时间间隔
@@ -100,12 +101,17 @@ void listFiles(const char *dir) {
 
 int main() {
 
-    char *home = getMavenHome();
-    printf("准备清理%s目录下无用的文件!!!\n",home);
+    //char *home = getMavenHome();
+
+
+    //getRepo(home);
+
+    /*printf("准备清理%s目录下无用的文件!!!\n",home);
 
     listFiles(home);
     printf("清理完成!\n");
-    system("pause");
+    system("pause");*/
+
 
     return 0;
 
