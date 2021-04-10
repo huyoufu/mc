@@ -1,9 +1,12 @@
-#include <stdlib.h>
-#include <stdint.h>
+/**
+ * Created by huyoufu on 2021/4/9 23:32.
+ * contact me -->https://www.jk1123.com
+ */
+#include <stdio.h>
 #include <windows.h>
 #include <dirent.h>
-#include <stdio.h>
 #include <time.h>
+#include "repofile-ops.h"
 
 //在windows平台上 每隔100ns就会计时器加1 而一秒等于10的9此方法 所有 直接除于10的7次方就可以获得秒值
 #define WINDOWS_TICK 10000000  //10的7次方
@@ -17,13 +20,13 @@ char * time2localString(const time_t t,char *result){
     return result;
 }
 
-
 void  FileTimeToTime_t(FILETIME  ft,  time_t  *t  )
 {
-    LONGLONG  ll=0;
+
     ULARGE_INTEGER            ui;
     ui.LowPart            =  ft.dwLowDateTime;
     ui.HighPart            =  ft.dwHighDateTime;
+    //LONGLONG  ll=0;
     //ll            =  ft.dwHighDateTime  <<  32  |  ft.dwLowDateTime;
     //必须必须先赋值再左移 因为直接左移 是在32位的基础左移的  我们先改变成64位单元 再左移
     //ll|=ft.dwHighDateTime;
@@ -31,16 +34,7 @@ void  FileTimeToTime_t(FILETIME  ft,  time_t  *t  )
     //ULARGE_INTEGER 则是利用了共用体的特性
     *t            =  ((LONGLONG)(ui.QuadPart  -  TickFrom1601to1970)  /  WINDOWS_TICK);
 }
-
-char *getMavenHome() {
-    char *m2_home = getenv("M2_HOME");
-    char *maven_home = getenv("MAVEN_HOME");
-    char *home = maven_home == NULL ? m2_home : maven_home;
-
-    return home;
-}
-
-void listFiles(const char *dir) {
+void listFiles(const char *dir,RepoFileInfoList* repoFileInfoList) {
 
 
     HANDLE hFind;
@@ -69,7 +63,7 @@ void listFiles(const char *dir) {
                 strcpy(dirNew, dir);
                 strcat(dirNew, "\\");
                 strcat(dirNew, findData.cFileName);
-                listFiles(dirNew);
+                listFiles(dirNew,repoFileInfoList);
             } else {
 
                 time_t t;
@@ -98,22 +92,14 @@ void listFiles(const char *dir) {
 
     FindClose(hFind);
 }
+void rfil_collect(char* repo_dir,RepoFileInfoList* repoFileInfoList){
+    printf("正在收集数据!!");
 
-int main() {
-
-    //char *home = getMavenHome();
-
-
-    //getRepo(home);
-
-    /*printf("准备清理%s目录下无用的文件!!!\n",home);
-
-    listFiles(home);
-    printf("清理完成!\n");
-    system("pause");*/
-
-
-    return 0;
-
-
+    listFiles(repo_dir,repoFileInfoList);
 }
+
+
+
+
+
+

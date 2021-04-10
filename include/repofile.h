@@ -7,21 +7,22 @@
 #ifndef MC_REPOFILE_H
 #define MC_REPOFILE_H
 
-typedef struct FileInfo_{
+enum RepoFileType{
+    ZIP,
+    XML,
+};
+typedef struct RepoFileInfo_{
     long last_modify_time;
     long create_time;
     char *name;
-    enum FileType fileType;
-} FileInfo;
+    enum RepoFileType repoFileType;
+} RepoFileInfo;
+typedef struct RepoFileInfoList_{
+    int pos;
+    int size;
+    RepoFileInfo* arr[];
+}RepoFileInfoList;
 
-enum FileType{
-    PNG,
-    JPG,
-    TXT,
-    HTML,
-    XML,
-    ZIP,
-    RAR,
-    EXE,
-} ;
+
+
 #endif //MC_REPOFILE_H
