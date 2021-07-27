@@ -8,7 +8,7 @@
 
 #include "gtest/gtest.h"
 extern "C"{
-//ÕâÀï·ÅCµÄÍ·ÎÄ¼ş
+//ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½Í·ï¿½Ä¼ï¿½
 
 #include "repofile.h"
 #include "repofile-ops.h"
@@ -22,9 +22,10 @@ int add1(){
     for (int i = 0; i < 10; ++i) {
         RepoFileInfo *rfi=(RepoFileInfo *)malloc(sizeof(RepoFileInfo));
         char is[2];
-        itoa(i,is,10);
+        //itoa(i,is,10);
+        sprintf(is,"%d",i);
         char* name=(char *)malloc(sizeof(char)*2+sizeof(char)*15);
-        sprintf(name, "%s%s", "ÎÄ¼ş±àºÅÊÇ", is);
+        sprintf(name, "%s%s", "æ–‡ä»¶ç¼–å·æ˜¯", is);
         rfi->name=name;
         rfi->repoFileType=XML;
         rfi->create_time=i;
@@ -35,7 +36,7 @@ int add1(){
     for (int i = 0; i < 10; ++i) {
         RepoFileInfo *rfi=rfil_get(list,i);
         char* name=rfi->name;
-        printf("µÚ%dºÅÎÄ¼şµÄÃû×ÖÊÇ %s\n",i,name);
+        printf("ç¬¬%då·æ–‡ä»¶çš„åå­—æ˜¯ %s\n",i,name);
     }
     return 1;
 

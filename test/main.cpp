@@ -4,7 +4,7 @@
 
 int main(int argc, char ** argv) {
 
-    printf("¿ªÊ¼ÕûÌå²âÊÔ!!!!");
+    printf("å¼€å§‹æ•´ä½“æµ‹è¯•!!!!");
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
