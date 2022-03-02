@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <stdio.h>
+
 extern "C"{
     //这里放C的头文件
     #include "repofile.h"
@@ -15,7 +17,9 @@ char *getMavenHome() {
 }
 
 int main(int argc, char ** argv) {
+    RepoFileInfoList  *repoFileInfoList;
 
+    printf("正在~~~");
 }
 
 

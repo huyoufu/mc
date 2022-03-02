@@ -6,5 +6,7 @@
 
 #ifndef MC_REPOINDEX_H
 #define MC_REPOINDEX_H
-
+#include "mc.h"
+#include "repofile.h"
+#define DB_NAME "mc.db"
 #endif //MC_REPOINDEX_H

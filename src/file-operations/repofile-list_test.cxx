@@ -8,11 +8,8 @@
 
 #include "gtest/gtest.h"
 extern "C"{
-//�����C��ͷ�ļ�
-
 #include "repofile.h"
 #include "repofile-ops.h"
-
 }
 
 
